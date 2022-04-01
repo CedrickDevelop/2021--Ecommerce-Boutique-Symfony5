@@ -1,35 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos produits - La Boutique Francaise {% endblock %}
+{% block title %}{{ product.name }} - La Boutique Francaise {% endblock %}
 
 {% block content %}
-<h1> Nos produits</h1>
 
-    <div class="row product-container">
-{#        // La variable product correspond à chaque item#}
-        {% for product in products  %}
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }} " class="img-fuild">
+        </div>
+        <div class="col-md-7 my-auto">
+            <h3> {{ product.name }}</h3>
+            <p>{{ product.subtitle }}</p>
+            <hr/>
+            <span class="product-page-price">{{ (product.price/100) | number_format(2, ',', '.') }}€</span>
 
-            <div class="col-md-4">
-{#              \////////////////////////////////////////////////////////////////////////#}
-{#               \// Creation de la fiche produit///////////////////////////////////////#}
-{#                \////////////////////////////////////////////////////////////////////#}
-                <div class="product-item text-center">
+            <p>
+                {{ product.description }}
+            </p>
+            <a href="" class="btn btn-primary">Ajouter au panier</a>
 
-                    <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"></img>
-
-                    <h4>{{ product.name }}</h4>
-
-                    <span class="product-subtitle">{{ product.subtitle }}</span>
-
-{#                    // on divise le chiffre de la bdd par 100 car il affiche des centaines#}
-{#                    // Number format permet d'éditer le format à 2 chiffres après la virgule et on remplace le point par virgule#}
-                    <span class="product-price">{{ (product.price/100) | number_format(2, ',', '.') }}</span>
-
-                </div>
-
-            </div>
-
-        {% endfor %}
+        </div>
 
     </div>
 
