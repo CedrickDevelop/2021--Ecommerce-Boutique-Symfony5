@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits - La Boutique Francaise {% endblock %}
+
+{% block content %}
+<h1> Nos produits</h1>
+
+    <div class="row product-container">
+{#        // La variable product correspond à chaque item#}
+        {% for product in products  %}
+
+            <div class="col-md-4">
+{#              \////////////////////////////////////////////////////////////////////////#}
+{#               \// Creation de la fiche produit///////////////////////////////////////#}
+{#                \////////////////////////////////////////////////////////////////////#}
+                <div class="product-item text-center">
+
+                    <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"></img>
+
+                    <h4>{{ product.name }}</h4>
+
+                    <span class="product-subtitle">{{ product.subtitle }}</span>
+
+{#                    // on divise le chiffre de la bdd par 100 car il affiche des centaines#}
+{#                    // Number format permet d'éditer le format à 2 chiffres après la virgule et on remplace le point par virgule#}
+                    <span class="product-price">{{ (product.price/100) | number_format(2, ',', '.') }}</span>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}
